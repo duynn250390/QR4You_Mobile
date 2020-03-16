@@ -1,0 +1,869 @@
+@charset "UTF-8";
+
+// ===================================================
+// -----------------------FONTS-----------------------
+// ===================================================
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap');
+
+body {
+    line-height: 1.4;
+    font-family: Arial, Helvetica, sans-serif;
+    // font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    letter-spacing: -0.04em;
+    word-break: keep-all;
+    white-space: -moz-pre-wrap;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
+    font-size: 14px;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    font-variant-ligatures: none;
+    -webkit-font-variant-ligatures: none;
+    text-rendering: optimizeLegibility;
+    -moz-osx-font-smoothing: grayscale;
+    font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+}
+
+// TODO: Khoi tao mau 
+$colMain:#F7444E;
+$colMainH:#FB0E1B;
+$col01:#2699FB;
+$col01H:#2699FB;
+$col02:#4B4B4B;
+$col02H:#333;
+$col03:#3F65AE;
+$col03H:#0C43AC;
+$col04:#E4E4E4;
+$col05:#78BCC4;
+$col06:#C3F0F5;
+$col07:#858585;
+$col08:#8D8D8D;
+$col09:#ccc;
+
+.container_dis {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+
+    @media (max-width: 480px) {
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+}
+
+@mixin tranOpacity($var, $time) {
+    transition: $var $time;
+    -webkit-transition: $var $time;
+    -moz-transition: $var $time;
+    -ms-transition: $var $time;
+    -o-transition: $var $time;
+}
+
+
+@mixin xoay($val) {
+    transform: rotate($val);
+    -webkit-transform: rotate($val);
+    -moz-transform: rotate($val);
+    -ms-transform: rotate($val);
+    -o-transform: rotate($val);
+}
+
+@mixin transform($val) {
+    transform: translate(0, $val);
+    -webkit-transform: translate(0, $val);
+    -moz-transform: translate(0, $val);
+    -ms-transform: translate(0, $val);
+    -o-transform: translate(0, $val);
+}
+
+@mixin borderRadius($val) {
+    border-radius: $val;
+    -webkit-border-radius: $val;
+    -moz-border-radius: $val;
+    -ms-border-radius: $val;
+    -o-border-radius: $val;
+}
+
+@mixin clear_fix() {
+    content: "";
+    display: block;
+    clear: both;
+    height: 0;
+    overflow: hidden;
+}
+
+@mixin break_word($num_line, $line_height) {
+    word-wrap: break-word;
+    -webkit-line-clamp: $num_line;
+    -webkit-box-orient: vertical;
+    display: block;
+    display: -webkit-box;
+    max-height: $line_height*$num_line + px;
+    line-height: $line_height + px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    white-space: normal;
+    word-break: break-all;
+}
+
+@mixin shadow_bottom {
+    box-shadow: 0 0px 10px 0px rgba(190, 190, 190, 0.46);
+    -webkit-box-shadow: 0 0px 10px 0px rgba(190, 190, 190, 0.46);
+    -moz-box-shadow: 0 0px 10px 0px rgba(190, 190, 190, 0.46);
+    border-color: transparent !important;
+    -webkit-transition: all 0.3s ease-in-out 0s;
+    -o-transition: all 0.3s ease-in-out 0s;
+    transition: all 0.3s ease-in-out 0s;
+}
+
+@media (min-width:768px) {
+    .container_dis {
+        max-width: 100%
+    }
+}
+
+@media (min-width: 992px) {
+    .container_dis {
+        max-width: 960px
+    }
+}
+
+@media (min-width:1200px) {
+    .container_dis {
+        max-width: 1140px
+    }
+}
+
+@media (min-width:1366px) {
+    .container_dis {
+        max-width: 1400px
+    }
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.center {
+    text-align: center;
+}
+
+.left {
+    text-align: left;
+}
+
+.right {
+    text-align: right;
+}
+
+@mixin calc($property, $expression) {
+    #{$property}: -moz-calc(#{$expression});
+    #{$property}: -webkit-calc(#{$expression});
+    #{$property}: calc(#{$expression});
+}
+
+// TODO: Khoi RESPONTIVE MIN_WIDTH
+@mixin minWidth($breakpoint) {
+    @media only screen and (min-width: $breakpoint) {
+        @content;
+    }
+}
+
+// TODO: Khoi RESPONTIVE MAX_WIDTH 
+
+@mixin maxWidth($breakpoint) {
+    @media only screen and (max-width: $breakpoint) {
+        @content;
+    }
+}
+
+// SCSS
+$base-font-size: 12;
+
+@mixin fontSize($size) {
+    font-size: ($size / $base-font-size) + em;
+}
+
+@function px2em($pxsize) {
+    @return ($pxsize/$base-font-size)+em;
+}
+
+@mixin font24() {
+    font-size: px2em(24);
+
+    @include maxWidth(1170px) {
+        font-size: px2em(20)
+    }
+
+    @include maxWidth(1024px) {
+        font-size: px2em(18)
+    }
+
+    @include maxWidth(768px) {
+        font-size: px2em(16)
+    }
+}
+
+@mixin font18() {
+    font-size: px2em(18);
+
+    @include maxWidth(980px) {
+        font-size: px2em(16)
+    }
+
+    @include maxWidth(768px) {
+        font-size: px2em(14)
+    }
+}
+
+@mixin font16() {
+    font-size: px2em(16);
+
+    @include maxWidth(768px) {
+        font-size: px2em(14)
+    }
+}
+
+@mixin flex($direction: row, $content: null, $items: null, $wrap: null) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $content;
+    align-items: $items;
+    flex-wrap: $wrap;
+}
+
+@mixin fontSizeA {
+    font-size: 1.000em;
+    // font-size: 14px;
+}
+
+@mixin fontSizeB1 {
+    font-size: 1.143em;
+    // font-size: 16px;
+}
+
+@mixin fontSizeB {
+    font-size: 1.286em;
+    // font-size: 18px;
+}
+
+@mixin fontSizeC {
+    font-size: 1.571em;
+    // font-size: 22px;
+}
+
+@mixin fontSizeD {
+    font-size: 1.857em;
+    // font-size: 26px;
+}
+
+@mixin fontSizeE {
+    font-size: 2.143em;
+    // font-size: 30px;
+}
+
+@mixin fontSizeF {
+    font-size: 2.429em;
+    // font-size: 34px;
+}
+
+@mixin fontSizeG {
+    font-size: 2.714em;
+    // font-size: 38px;
+}
+
+@mixin fontSizeH {
+    font-size: 3.000em;
+    // font-size: 42px;
+}
+
+@mixin fontSizeY {
+    font-size: 3.286em;
+    // font-size: 46px;
+}
+
+@mixin gradianAA {
+    background: rgb(247, 68, 78);
+    background: -moz-linear-gradient(236deg, rgba(247, 68, 78, 1) 0%, rgba(63, 101, 174, 1) 58%);
+    background: -webkit-linear-gradient(236deg, rgba(247, 68, 78, 1) 0%, rgba(63, 101, 174, 1) 58%);
+    background: linear-gradient(236deg, rgba(247, 68, 78, 1) 0%, rgba(63, 101, 174, 1) 58%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#f7444e", endColorstr="#3f65ae", GradientType=1);
+}
+
+@mixin gradianA {
+    background: rgb(247, 68, 78);
+    background: -moz-linear-gradient(90deg, rgba(247, 68, 78, 1) 0%, rgba(63, 101, 174, 0.74) 100%);
+    background: -webkit-linear-gradient(90deg, rgba(247, 68, 78, 1) 0%, rgba(63, 101, 174, 0.74) 100%);
+    background: linear-gradient(90deg, rgba(247, 68, 78, 1) 0%, rgba(63, 101, 174, 0.74) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#f7444e", endColorstr="#3f65ae", GradientType=1);
+}
+
+@mixin gradianB {
+    background: rgb(247, 68, 78);
+    background: -moz-linear-gradient(90deg, rgba(247, 68, 78, 1) 0%, rgba(63, 101, 174, 1) 100%);
+    background: -webkit-linear-gradient(90deg, rgba(247, 68, 78, 1) 0%, rgba(63, 101, 174, 1) 100%);
+    background: linear-gradient(90deg, rgba(247, 68, 78, 1) 0%, rgba(63, 101, 174, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#f7444e", endColorstr="#3f65ae", GradientType=1);
+}
+
+@mixin gradianC {
+    background: rgb(247, 68, 78);
+    background: -moz-linear-gradient(90deg, rgba(247, 68, 78, 1) 0%, rgba(247, 68, 78, 1) 100%);
+    background: -webkit-linear-gradient(90deg, rgba(247, 68, 78, 1) 0%, rgba(247, 68, 78, 1) 100%);
+    background: linear-gradient(90deg, rgba(247, 68, 78, 1) 0%, rgba(247, 68, 78, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#f7444e", endColorstr="#f7444e", GradientType=1);
+}
+
+@mixin gradianD {
+    background: rgb(247, 68, 78);
+    background: -moz-linear-gradient(218deg, rgba(247, 68, 78, 1) 0%, rgba(63, 101, 174, 1) 100%);
+    background: -webkit-linear-gradient(218deg, rgba(247, 68, 78, 1) 0%, rgba(63, 101, 174, 1) 100%);
+    background: linear-gradient(218deg, rgba(247, 68, 78, 1) 0%, rgba(63, 101, 174, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#f7444e", endColorstr="#3f65ae", GradientType=1);
+}
+
+@mixin gradianDH {
+    background: rgb(247, 68, 78);
+    background: -moz-linear-gradient(218deg, rgba(247, 68, 78, 1) 0%, rgba(247, 68, 78, 1) 100%);
+    background: -webkit-linear-gradient(218deg, rgba(247, 68, 78, 1) 0%, rgba(247, 68, 78, 1) 100%);
+    background: linear-gradient(218deg, rgba(247, 68, 78, 1) 0%, rgba(247, 68, 78, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#f7444e", endColorstr="#f7444e", GradientType=1);
+}
+
+@mixin hofo() {
+
+    &:visited,
+    &:active,
+    &:hover,
+    &:focus {
+        @content;
+    }
+}
+
+.heading_title {
+    display: block;
+
+    h2 {
+        @include fontSizeF();
+    }
+
+    h3 {
+        @include fontSizeE();
+    }
+
+    h4 {
+        @include fontSizeD();
+    }
+
+    h5 {
+        @include fontSizeC();
+    }
+
+    h6 {
+        @include fontSizeB();
+    }
+}
+
+@mixin paconlr {
+    padding-left: 1.071em;
+    padding-right: 1.071em;
+}
+
+input[type=range] {
+    border: none;
+    height: 27px;
+    -webkit-appearance: none;
+    margin: 10px 0;
+    width: 100%;
+
+    &:hover,
+    &:focus {
+        border: none;
+        outline: none;
+    }
+}
+
+input[type=range]:focus {
+    outline: none;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 1px;
+    cursor: pointer;
+    animate: 0.2s;
+    box-shadow: 1px 1px 1px #e1e1e1;
+    background: #3071A9;
+    border-radius: 0px;
+    border: 1px solid #E1E1E1;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    box-shadow: 1px 1px 0px #E1E1E1;
+    border: 0px solid #E1E1E1;
+    height: 20px;
+    width: 20px;
+    border-radius: 50px;
+    background: #000000;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -10px;
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+    background: #3071A9;
+}
+
+input[type=range]::-moz-range-track {
+    width: 100%;
+    height: 1px;
+    cursor: pointer;
+    animate: 0.2s;
+    box-shadow: 1px 1px 1px #e1e1e1;
+    background: #3071A9;
+    border-radius: 0px;
+    border: 1px solid #E1E1E1;
+}
+
+input[type=range]::-moz-range-thumb {
+    box-shadow: 1px 1px 0px #E1E1E1;
+    border: 0px solid #E1E1E1;
+    height: 20px;
+    width: 20px;
+    border-radius: 50px;
+    background: #000000;
+    cursor: pointer;
+}
+
+input[type=range]::-ms-track {
+    width: 100%;
+    height: 1px;
+    cursor: pointer;
+    animate: 0.2s;
+    background: transparent;
+    border-color: transparent;
+    color: transparent;
+}
+
+input[type=range]::-ms-fill-lower {
+    background: #3071A9;
+    border: 1px solid #E1E1E1;
+    border-radius: 0px;
+    box-shadow: 1px 1px 1px #e1e1e1;
+}
+
+input[type=range]::-ms-fill-upper {
+    background: #3071A9;
+    border: 1px solid #E1E1E1;
+    border-radius: 0px;
+    box-shadow: 1px 1px 1px #e1e1e1;
+}
+
+input[type=range]::-ms-thumb {
+    margin-top: 1px;
+    box-shadow: 1px 1px 0px #E1E1E1;
+    border: 0px solid #E1E1E1;
+    height: 20px;
+    width: 20px;
+    border-radius: 50px;
+    background: #000000;
+    cursor: pointer;
+}
+
+input[type=range]:focus::-ms-fill-lower {
+    background: #3071A9;
+}
+
+input[type=range]:focus::-ms-fill-upper {
+    background: #3071A9;
+}
+
+// Style RANGER
+
+.input-range__slider {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: $colMain;
+    border: 1px solid $colMain;
+    border-radius: 100%;
+    cursor: pointer;
+    display: block;
+    height: 1rem;
+    margin-left: -0.5rem;
+    margin-top: -0.55rem;
+    outline: none;
+    position: absolute;
+    top: 50%;
+    -webkit-transition: box-shadow 0.3s ease-out, -webkit-transform 0.3s ease-out;
+    transition: box-shadow 0.3s ease-out, -webkit-transform 0.3s ease-out;
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out, -webkit-transform 0.3s ease-out;
+    width: 1rem;
+    -moz-transition: box-shadow 0.3s ease-out, -webkit-transform 0.3s ease-out;
+    -ms-transition: box-shadow 0.3s ease-out, -webkit-transform 0.3s ease-out;
+    -o-transition: box-shadow 0.3s ease-out, -webkit-transform 0.3s ease-out;
+}
+
+.input-range__slider:active {
+    -webkit-transform: scale(1.3);
+    transform: scale(1.3);
+}
+
+.input-range__slider:focus {
+    box-shadow: 0 0 0 5px rgba(63, 81, 181, 0.2);
+}
+
+.input-range--disabled .input-range__slider {
+    background: #cccccc;
+    border: 1px solid #cccccc;
+    box-shadow: none;
+    -webkit-transform: none;
+    transform: none;
+}
+
+.input-range__slider-container {
+    -webkit-transition: left 0.3s ease-out;
+    transition: left 0.3s ease-out;
+}
+
+.input-range__label {
+    color: #aaaaaa;
+    font-family: "Helvetica Neue", san-serif;
+    font-size: 0.8rem;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    white-space: nowrap;
+}
+
+.input-range__label--min,
+.input-range__label--max {
+    bottom: -1.4rem;
+    position: absolute;
+    display: none;
+}
+
+.input-range__label--min {
+    left: 0;
+}
+
+.input-range__label--max {
+    right: 0;
+}
+
+.input-range__label--value {
+    position: absolute;
+    top: -2.2rem;
+}
+
+.input-range__label-container {
+    // display: none;
+    left: -50%;
+    position: relative;
+    font-size: 1.3em;
+    color: #333;
+    font-weight: bold;
+}
+
+.input-range__label--max .input-range__label-container {
+    left: 50%;
+}
+
+.input-range__track {
+    background: #eeeeee;
+    border-radius: 0.1rem;
+    cursor: pointer;
+    display: block;
+    height: 0.1rem;
+    position: relative;
+    -webkit-transition: left 0.3s ease-out, width 0.3s ease-out;
+    transition: left 0.3s ease-out, width 0.3s ease-out;
+    -webkit-border-radius: 0.1rem;
+    -moz-border-radius: 0.1rem;
+    -ms-border-radius: 0.1rem;
+    -o-border-radius: 0.1rem;
+    -moz-transition: left 0.3s ease-out, width 0.3s ease-out;
+    -ms-transition: left 0.3s ease-out, width 0.3s ease-out;
+    -o-transition: left 0.3s ease-out, width 0.3s ease-out;
+}
+
+.input-range--disabled .input-range__track {
+    background: #eeeeee;
+}
+
+.input-range__track--background {
+    left: 0;
+    margin-top: -0.15rem;
+    position: absolute;
+    right: 0;
+    top: 50%;
+}
+
+.input-range__track--active {
+    background: $colMain;
+}
+
+.input-range {
+    height: 1rem;
+    position: relative;
+    width: 100%;
+}
+
+@mixin col_10 {
+    -ms-flex: 0 0 10%;
+    flex: 0 0 10%;
+    max-width: 10%;
+}
+
+@mixin col_20 {
+    -ms-flex: 0 0 20%;
+    flex: 0 0 10%;
+    max-width: 10%;
+}
+
+@mixin col_25 {
+    -ms-flex: 0 0 25%;
+    flex: 0 0 25%;
+    max-width: 25%;
+}
+
+@mixin col_30 {
+    -ms-flex: 0 0 33.333333%;
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+}
+
+@mixin col_50 {
+    -ms-flex: 0 0 50%;
+    flex: 0 0 50%;
+    max-width: 50%;
+}
+
+@mixin col_70 {
+    -ms-flex: 0 0 66.666667%;
+    flex: 0 0 66.666667%;
+    max-width: 66.666667%;
+}
+
+@mixin col_100 {
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+
+@mixin col($params) {
+    -ms-flex: 0 0 #{$params};
+    flex: 0 0 #{$params};
+    max-width: #{$params};
+}
+
+
+.opa_0 {
+    opacity: 0;
+}
+
+.ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.valida_feedback {
+    font-size: 0.9em;
+    color: red;
+    min-height: 1.5em;
+}
+
+.paconlr {
+    padding-left: 1.071em;
+    padding-right: 1.071em;
+}
+
+@mixin excerpt($font-size: $paragraph-font-size, $line-height: 1.4, $lines-to-show: 3, $excerpt-bg: transparent) {
+    background: $excerpt-bg;
+    display: block;
+    /* Fallback for non-webkit */
+    display: -webkit-box;
+    max-height: $font-size*$line-height*$lines-to-show;
+    /* Fallback for non-webkit */
+    font-size: $font-size;
+    line-height: $line-height;
+    -webkit-line-clamp: $lines-to-show;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    // Fallback for non-webkit
+    @media screen and (min--moz-device-pixel-ratio:0),
+    screen and (-ms-high-contrast: active),
+    screen and (-ms-high-contrast: none) {
+        overflow: hidden;
+        position: relative;
+
+        &:before {
+            background: $excerpt-bg;
+            bottom: 0;
+            position: absolute;
+            right: 0;
+            float: right;
+            content: '\2026';
+            margin-left: -3rem;
+            width: 3rem;
+        }
+
+        &:after {
+            content: '';
+            background: $excerpt-bg;
+            position: absolute;
+            height: 50px;
+            width: 100%;
+            z-index: 1;
+        }
+    }
+}
+
+@mixin amineOpacity {
+    -webkit-animation-name: faceOut_Text 1s;
+    animation-name: faceOut_Text 1s;
+}
+
+@mixin background_Gradian {
+    background: rgba(0, 0, 0, 0);
+    /* Old Browsers */
+    background: -moz-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 81%, rgba(0, 0, 0, 1) 83%);
+    /* FF3.6+ */
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(0, 0, 0, 0)), color-stop(81%, rgba(0, 0, 0, 1)), color-stop(83%, rgba(0, 0, 0, 1)));
+    /* Chrome, Safari4+ */
+    background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 81%, rgba(0, 0, 0, 1) 83%);
+    /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 81%, rgba(0, 0, 0, 1) 83%);
+    /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 81%, rgba(0, 0, 0, 1) 83%);
+    /* IE 10+ */
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 81%, rgba(0, 0, 0, 1) 83%);
+    /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#000000', endColorstr='#000000', GradientType=0);
+    /* IE6-9 */
+}
+
+@mixin btn01val($padding) {
+    padding-left: $padding;
+    padding-right: $padding;
+    height: 46px;
+    border: 1px solid $col09;
+    background: $col03H;
+    color: #fff;
+    outline: none;
+    text-decoration: none;
+    outline: none;
+    min-width: 240px;
+    border: none;
+    cursor: pointer;
+    @include borderRadius(0);
+    @include tran_slow_03();
+
+    @include hofo() {
+        border: 1px solid transparent;
+        background: $colMainH;
+        color: #fff;
+    }
+
+    @include maxWidth(768px) {
+        height: 42px;
+    }
+
+    @include maxWidth(480px) {
+        height: 40px;
+    }
+}
+
+@mixin editPladeHolder {
+    &::-webkit-input-placeholder {
+        /* Chrome/Opera/Safari */
+        @content;
+    }
+
+    &::-moz-placeholder {
+        /* Firefox 19+ */
+        @content;
+    }
+
+    &:-ms-input-placeholder {
+        /* IE 10+ */
+        @content;
+    }
+
+    &:-moz-placeholder {
+        /* Firefox 18- */
+        @content;
+    }
+}
+
+@function calculate_width ($col_span) {
+    @return 100% / $col_span;
+}
+
+.column1 {
+    width: calculate_width(1); // spans 2 columns, width = 100%
+}
+
+.column2 {
+    width: calculate_width(2); // spans 2 columns, width = 50%
+}
+
+.column3 {
+    width: calculate_width(3); // spans 3 columns, width = 33.3%
+}
+
+.column4 {
+    width: calculate_width(4); // spans 3 columns, width = 25%
+}
+
+.column5 {
+    width: calculate_width(5); // spans 3 columns, width = 20%
+}
+
+img:not([alt]),
+img[alt=''] {
+    border: 5px solid #000;
+}
+
+@mixin tranform($var) {
+    transform: rotate($var + deg);
+    -webkit-transform: rotate($var + deg);
+    -moz-transform: rotate($var + deg);
+    -ms-transform: rotate($var + deg);
+    -o-transform: rotate($var + deg);
+}
+@mixin multiLineEllipsis($lineHeight, $lineCount, $bgColor) {
+    overflow: hidden;
+    position: relative;
+    line-height: $lineHeight + px;
+    max-height: ($lineHeight * $lineCount) + px;
+    text-align: justify;
+
+    &:before {
+        content: '...';
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        background: $bgColor;
+    }
+
+    &:after {
+        content: '';
+        position: absolute;
+        right: 0;
+        width: 1em;
+        height: 1em;
+        margin-top: 0.2em;
+    }
+}

@@ -1,0 +1,58 @@
+.btn {
+    border: none;
+    cursor: pointer;
+    width: auto;
+    background: #ddd;
+    padding: 8px 15px;
+    font-size: px2em(14);
+    @include borderRadius(6px);
+    @include tran_slow_03();
+    min-width: 96px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    &.btn_primary {
+        background: #60BE9A;
+        color: #022047;
+
+        @include hofo() {
+            background: #25A775;
+            color: #022047;
+        }
+    }
+
+    &.btn_light {
+        border: 1px solid #D8D8D8;
+        background: #D8D8D8;
+        color: #022047;
+
+        @include hofo() {
+            border: 1px solid #484848;
+            background: #484848;
+            color: #fff;
+        }
+    }
+
+    &.btn_sussec {
+        border: 1px solid #ff8d8d;
+        background: #ff8d8d;
+        color: #022047;
+
+        @include hofo() {
+            border: 1px solid #dc5a5a;
+            background: #dc5a5a;
+        }
+    }
+    &.btn_default {
+        border: 1px solid #60BE9A;
+        background: #fff;
+        color: #022047;
+
+        @include hofo() {
+            background: #7AFFCB;
+            border: 1px solid #7AFFCB;
+        }
+    }
+}

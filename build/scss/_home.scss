@@ -1,0 +1,224 @@
+body {
+  // background: green;
+  color: #333;
+  @include fontKR();
+}
+
+.container {
+  margin: 0 auto;
+  width: calc(100% - 20px);
+  max-width: 480px;
+}
+
+.main_warap {
+  max-width: 480px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.main_top_header {
+  height: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .box_logo {
+    a {
+      text-decoration: none;
+      outline: none;
+
+      .logo {
+        height: 68px;
+        width: 68px;
+        display: block;
+        background: url('../images/svg/logo.svg');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 100%;
+      }
+    }
+  }
+}
+
+.control_tabs_menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+
+
+  .listMenus {
+    display: flex;
+    flex-direction: row;
+    overflow-y: hidden;
+    width: 100%;
+    background: #75484e;
+
+    .item_menu {
+      white-space: nowrap;
+      font-size: px2em(18);
+      font-weight: 600;
+      color: #ae8b8f;
+      margin-right: 15px;
+      margin-left: 15px;
+      padding: 20px 10px;
+
+      &.on {
+        color: #fff;
+        position: relative;
+
+        &:after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          height: 3px;
+          background: #b08c91;
+        }
+      }
+    }
+  }
+}
+.control_tabs_item {
+  display: block;
+  width: 100%;
+  background: #f6f2ee;
+  min-height: calc(100vh - 180px);
+
+  .heading_order {
+    position: relative;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    .txt_order {
+      font-size: px2em(30);
+      font-weight: 700;
+      color: #2f2e2d;
+    }
+
+    .icon_order {
+      position: absolute;
+      right: 10px;
+      top: 0;
+      width: 30px;
+      height: 40px;
+      background: url('../images/icon/glass_icon.png');
+      background-position: center;
+      background-size: 100%;
+      background-repeat: no-repeat;
+    }
+  }
+
+  .item_box_list {
+    margin-bottom: 20px;
+    background: #fff;
+    padding: 25px 10px;
+    @include shadow_bottom();
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    .list_header {
+      position: relative;
+
+      .title {
+        font-size: px2em(18);
+        font-weight: 700;
+      }
+
+      .categoty {
+        position: absolute;
+        right: 0;
+        top: 0;
+        font-size: px2em(14);
+        color: #acacac;
+        text-transform: uppercase;
+      }
+    }
+
+    .list_body {
+      margin-top: 10px;
+
+      .item_lists {
+        display: flex;
+        flex-direction: row;
+        padding-bottom: 10px;
+        padding-top: 10px;
+
+        &:last-child {
+          padding-bottom: 0;
+          padding-top: 0;
+        }
+
+        &.heading {
+          margin-bottom: 15px;
+          position: relative;
+          padding-bottom: 0;
+          padding-top: 0;
+
+          &:after {
+            content: '';
+            height: 1px;
+            width: 100%;
+            background: #c6c6c6;
+            position: absolute;
+            bottom: -5px;
+          }
+
+          .tiem {
+            font-weight: 600;
+            font-size: px2em(11);
+            position: relative;
+            color: #404040;
+
+            &.names {
+              &::after {
+                content: none;
+              }
+            }
+          }
+        }
+
+        .tiem {
+          width: 60px;
+
+          &.names {
+            width: calc(100% - 180px);
+            font-size: px2em(14);
+            padding-left: 20px;
+            position: relative;
+
+            &:after {
+              content: '';
+              height: 16px;
+              width: 16px;
+              border: 1px solid #444444;
+              @include borderRadius(50%);
+              display: block;
+              position: absolute;
+              top: 0;
+              left: 0;
+            }
+
+            .name_kr {
+              font-size: px2em(12);
+              font-weight: 700;
+              color: #000;
+              @include break_word(12, 18);
+            }
+
+            .name_en {
+              font-size: px2em(10);
+              font-weight: 400;
+              @include break_word(10, 18);
+              color: #868686;
+            }
+          }
+        }
+      }
+    }
+  }
+}

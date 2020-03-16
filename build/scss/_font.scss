@@ -1,0 +1,29 @@
+// @font-face {
+//     font-family: "SF Pro Display Regular";
+//     src: url("../fonts/fosd/0b51833ff62e4af8acb5fd3e2bf59e97.eot");
+//     /* IE9*/
+//     src: url("../fonts/fosd/0b51833ff62e4af8acb5fd3e2bf59e97.eot?#iefix") format("embedded-opentype"),
+//         /* IE6-IE8 */
+//         url("../fonts/fosd/0b51833ff62e4af8acb5fd3e2bf59e97.woff2") format("woff2"),
+//         /* chrome、firefox */
+//         url("../fonts/fosd/0b51833ff62e4af8acb5fd3e2bf59e97.woff") format("woff"),
+//         /* chrome、firefox */
+//         url("../fonts/fosd/0b51833ff62e4af8acb5fd3e2bf59e97.ttf") format("truetype"),
+//         /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+//         url("../fonts/fosd/0b51833ff62e4af8acb5fd3e2bf59e97.svg#SF Pro Display Regular") format("svg");
+//     /* iOS 4.1- */
+// }
+
+// @mixin font {
+//     font-family: "SF Pro Display Regular" !important;
+//     font-size: 16px;
+//     font-style: normal;
+//     -webkit-font-smoothing: antialiased;
+//     -webkit-text-stroke-width: 0.2px;
+//     -moz-osx-font-smoothing: grayscale;
+// }
+@mixin fontKR {
+    font-family: source-han-sans-kor, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+}
